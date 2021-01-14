@@ -11,13 +11,23 @@ import 'package:flutter/material.dart';
 
 /// main 函数
 void main() {
-  runApp(Center(
-    child: Text(
-      "Hello World Flutter",
-      //Text 需要传入一个方向参数
-      textDirection: TextDirection.ltr,
-      style: TextStyle(
-          color: Colors.yellow, fontSize: 40, backgroundColor: Colors.green),
+  runApp(MaterialApp(
+    title: "Hello World",
+    home: Scaffold(
+      appBar: AppBar(
+        title: Text("Title"),
+      ),
+      body: Center(
+        child: Text(
+          "Hello World",
+          //Text 需要传入一个方向参数
+          textDirection: TextDirection.ltr,
+          style: TextStyle(
+              color: Colors.yellow,
+              fontSize: 40,
+              backgroundColor: Colors.green),
+        ),
+      ),
     ),
   ));
 }
