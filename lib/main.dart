@@ -10,24 +10,39 @@ import 'package:flutter/material.dart';
  */
 
 /// main 函数
-void main() {
-  runApp(MaterialApp(
-    title: "Hello World",
-    home: Scaffold(
-      appBar: AppBar(
-        title: Text("Title"),
-      ),
-      body: Center(
-        child: Text(
-          "Hello World",
-          //Text 需要传入一个方向参数
-          textDirection: TextDirection.ltr,
-          style: TextStyle(
-              color: Colors.yellow,
-              fontSize: 40,
-              backgroundColor: Colors.green),
-        ),
-      ),
-    ),
-  ));
+void main() => MyApp();
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Hello World",
+      home: Scaffold(
+          appBar: AppBar(
+            title: Center(child: Text("Title")),
+          ),
+          body: ContentWidget()),
+    );
+  }
+}
+
+class ContentWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: TextWidget(),
+    );
+  }
+}
+
+class TextWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      "Hello World",
+      //Text 需要传入一个方向参数
+      textDirection: TextDirection.ltr,
+      style: TextStyle(color: Colors.yellow, fontSize: 40),
+    );
+  }
 }
