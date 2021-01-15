@@ -29,7 +29,7 @@ class Homecontent extends StatelessWidget {
                 "黑寡妇", "不一样的寡姐", "http://39.105.189.216/html/player/img/1.png"),
             ProductItem("绿巨人", "绿巨人的成长之路",
                 "http://39.105.189.216/html/player/img/2.png"),
-            ProductItem("美国队长", "美国队长的爱恨情仇",
+            ProductItem("美国队长", "爱恨情仇英雄路",
                 "http://39.105.189.216/html/player/img/3.png"),
           ],
         ));
