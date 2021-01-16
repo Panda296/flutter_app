@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 class HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return TextRichDemo();
+    return CustomButton();
   }
 }
 
@@ -66,6 +66,55 @@ class TextRichDemo extends StatelessWidget {
         ),
       ]),
       textAlign: TextAlign.center,
+    );
+  }
+}
+
+class ButtonDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        RaisedButton(
+            child: Text("RaisedButton"),
+            onPressed: () => print("RaisedButton")),
+        FlatButton(
+            child: Text("FlatButton"), onPressed: () => print("FlatButton")),
+        OutlineButton(
+            child: Text("OutlineButton"),
+            onPressed: () => print("OutlineButton")),
+        FloatingActionButton(
+            child: Text("FloatingActionButton"),
+            onPressed: () => print("FloatingActionButton")),
+      ],
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: RaisedButton(
+        color: Colors.orange,
+        child: Row(
+          // 这个属性表示尽可能小,不加的话默认 Row 会占据一行
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.ad_units_outlined,
+              color: Colors.white,
+            ),
+            SizedBox(
+              width: 6,
+            ),
+            Text("Button"),
+          ],
+        ),
+        onPressed: () => print("object"),
+        // 通过 shape 属性来添加圆角
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      ),
     );
   }
 }
