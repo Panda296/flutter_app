@@ -9,26 +9,61 @@ class MyApp extends StatelessWidget {
       title: "StatefulWidget",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Panda"),
+          title: Text("StatefulWidget"),
         ),
-        body: Homecontent(),
+        body: Center(child: ContentWidget()),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {},
+        ),
       ),
     );
   }
 }
 
-class Homecontent extends StatelessWidget {
+class ContentWidget extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: TextWidget(),
-    );
-  }
+  State<StatefulWidget> createState() => ContentWidgetState();
 }
 
-class TextWidget extends StatelessWidget {
+class ContentWidgetState extends State {
+  int conut = 0;
+
   @override
   Widget build(BuildContext context) {
-    return Text("StatefulWidget");
+    return Column(
+      // Column 默认占据很大内容,从上到下排列,这个属性让他居中
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          "当前计数 : $conut",
+          style: TextStyle(color: Colors.orange, fontSize: 20),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            RaisedButton(
+              onPressed: () {
+                print("Button Clicked");
+                setState(() {
+                  conut++;
+                });
+              },
+              child: Text("计数增加"),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            RaisedButton(
+              onPressed: () {
+                conut = 0;
+                setState(() {});
+              },
+              child: Text("归零"),
+            ),
+          ],
+        )
+      ],
+    );
   }
 }
