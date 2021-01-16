@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 class HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return CustomButton();
+    return LocalImageDemo();
   }
 }
 
@@ -91,7 +91,7 @@ class ButtonDemo extends StatelessWidget {
   }
 }
 
-class CustomButton extends StatelessWidget {
+class CustomButtonDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -115,6 +115,34 @@ class CustomButton extends StatelessWidget {
         // 通过 shape 属性来添加圆角
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
+    );
+  }
+}
+
+class NetWorkImageDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        color: Colors.lightBlue,
+        width: 250,
+        height: 300,
+        // alignment: Alignment.bottomLeft,
+        child: Image.network(
+          "http://39.105.189.216/html/player/img/4.png",
+          repeat: ImageRepeat.repeatY,
+          fit: BoxFit.contain,
+        ),
+      ),
+    );
+  }
+}
+
+class LocalImageDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(child: Image.asset("assets/images/img_1.jpg")),
     );
   }
 }
