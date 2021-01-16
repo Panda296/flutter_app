@@ -9,26 +9,70 @@ class MyApp extends StatelessWidget {
       title: "StatefulWidget",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Panda"),
+          title: Text("LifeCycle"),
         ),
-        body: Homecontent(),
+        body: HomeContent(),
       ),
     );
   }
 }
 
-class Homecontent extends StatelessWidget {
+class HomeContent extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: TextWidget(),
-    );
+  State<StatefulWidget> createState() {
+    print("HomeContent createState");
+    return HomeContentState();
+  }
+
+  HomeContent() {
+    print("HomeContent 构造函数");
   }
 }
 
-class TextWidget extends StatelessWidget {
+/// State 对象在 Flutter 中会多次利用
+class HomeContentState extends State {
+  int count = 0;
   @override
   Widget build(BuildContext context) {
-    return Text("StatefulWidget");
+    print("HomeContentState build");
+    return Center(
+      child: Column(
+        children: [
+          RaisedButton(
+            onPressed: () {
+              setState(() {
+                count++;
+              });
+            },
+            child: Text("Add"),
+          ),
+          Text(
+            "LifeCycle $count",
+            style: TextStyle(fontSize: 24, color: Colors.amber),
+          ),
+        ],
+      ),
+    );
+  }
+
+  HomeContentState() {
+    print("HomeContentState Constructor ");
+  }
+  @override
+  void initState() {
+    super.initState();
+    print("InitState");
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print("HomeContentState  didChangeDependencies 本身状态发生改变事调用");
+  }
+
+  @override
+  void didUpdateWidget(covariant StatefulWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print("HomeContentState didUpdateWidget 父类发生改变时调用");
   }
 }
