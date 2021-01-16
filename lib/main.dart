@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
       title: "StatefulWidget",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("StatefulWidget"),
+          title: Text("StatefulWidget.."),
         ),
         body: Center(child: ContentWidget()),
         floatingActionButton: FloatingActionButton(
