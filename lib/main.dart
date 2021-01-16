@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 class HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return LocalImageDemo();
+    return ClipOvalDemo();
   }
 }
 
@@ -138,11 +138,55 @@ class NetWorkImageDemo extends StatelessWidget {
   }
 }
 
+/// 这里有错误,加载失败
 class LocalImageDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(child: Image.asset("assets/images/img_1.jpg")),
     );
+  }
+}
+
+/**
+ * CircleAvatar 组件可以放 child 添加文字
+ */
+class CircleAvatarDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: CircleAvatar(
+        backgroundColor: Colors.lightGreenAccent,
+        radius: 80,
+        backgroundImage:
+            NetworkImage("http://39.105.189.216/html/player/img/4.png"),
+        child: Container(
+          alignment: Alignment(0, 1.5),
+          child: Text(
+            "I'm Iron Man",
+            style: TextStyle(fontSize: 24, color: Colors.red),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/**
+ * 这种图片占用了 child,这里会根据图片的长宽进行裁剪圆形,
+ * 如果图片不是 1:1 则会裁剪成椭圆形
+ */
+class ClipOvalDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: ClipOval(
+      child: Image.network(
+        "http://39.105.189.216/html/player/img/1.png",
+        width: 100,
+        height: 100,
+        fit: BoxFit.cover,
+      ),
+    ));
   }
 }
