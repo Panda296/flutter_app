@@ -78,69 +78,87 @@ class LoginWidgetState extends State {
   @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Form(
-            key: key,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextFormField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        width: 1,
+        child: ListView(
+          children: [
+            Form(
+                autovalidateMode: AutovalidateMode.always,
+                key: key,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextFormField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(),
+                          // borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                        ),
+                        icon: Icon(Icons.people),
+                        labelText: "User_name",
                       ),
-                      borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                      onSaved: (value) => this.username = value,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "请输入账号";
+                        }
+                        return null;
+                      },
                     ),
-                    icon: Icon(Icons.people),
-                    labelText: "User_name",
-                  ),
-                  onSaved: (value) => this.username = value,
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                TextFormField(
-                  onSaved: (value) => this.psd = value,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        width: 1,
+                    SizedBox(
+                      height: 30,
+                    ),
+                    TextFormField(
+                      onSaved: (value) => this.psd = value,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(),
+                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                        ),
+                        icon: Icon(Icons.lock),
+                        labelText: "PassWorld",
                       ),
-                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                      obscureText: true,
+                      // 这里设施是否密文显示
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "密码不能为空";
+                        }
+                        return null;
+                      },
                     ),
-                    icon: Icon(Icons.lock),
-                    labelText: "PassWorld",
-                  ),
-                  obscureText: true,
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                Container(
-                  width: double.infinity,
-                  child: RaisedButton(
-                      color: Colors.lightBlueAccent,
-                      child: Text("注册"),
-                      onPressed: () {
-                        print('进行注册');
-                        key.currentState.save();
-                        print('username:$username  password:$psd');
-                      }),
-                ),
-                SizedBox(
-                  width: 50,
-                ),
-                Container(
-                  width: double.infinity,
-                  child: RaisedButton(
-                    color: Colors.lightBlueAccent,
-                    child: Text("登录"),
-                    onPressed: () {
-                      print('进行登录');
-                    },
-                  ),
-                )
-              ],
-            )),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      child: RaisedButton(
+                          color: Colors.lightBlueAccent,
+                          child: Text("注册"),
+                          onPressed: () {
+                            print('进行注册');
+                            key.currentState.save();
+                            print('username:$username  password:$psd');
+                            // key.currentState.validate();
+                          }),
+                    ),
+                    SizedBox(
+                      width: 50,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      child: RaisedButton(
+                        color: Colors.lightBlueAccent,
+                        child: Text("登录"),
+                        onPressed: () {
+                          print('进行登录');
+                          key.currentState.save();
+                          print('username:$username  password:$psd');
+                          // key.currentState.validate();
+                        },
+                      ),
+                    )
+                  ],
+                )),
+          ],
+        ),
       );
 }
