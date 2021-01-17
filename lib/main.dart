@@ -11,20 +11,20 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text("Panda"),
         ),
-        body: Register(),
+        body: LoginWidget(),
       ),
     );
   }
 }
 
-class Register extends StatefulWidget {
+class TextFieldWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return RegisterState();
+    return TextFieldWidgetState();
   }
 }
 
-class RegisterState extends State {
+class TextFieldWidgetState extends State {
   final controller = TextEditingController();
 
   @override
@@ -63,4 +63,84 @@ class RegisterState extends State {
       ),
     );
   }
+}
+
+class LoginWidget extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => LoginWidgetState();
+}
+
+class LoginWidgetState extends State {
+  String username;
+  String psd;
+  GlobalKey<FormState> key = GlobalKey();
+
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Form(
+            key: key,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextFormField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                    ),
+                    icon: Icon(Icons.people),
+                    labelText: "User_name",
+                  ),
+                  onSaved: (value) => this.username = value,
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                TextFormField(
+                  onSaved: (value) => this.psd = value,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    ),
+                    icon: Icon(Icons.lock),
+                    labelText: "PassWorld",
+                  ),
+                  obscureText: true,
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Container(
+                  width: double.infinity,
+                  child: RaisedButton(
+                      color: Colors.lightBlueAccent,
+                      child: Text("注册"),
+                      onPressed: () {
+                        print('进行注册');
+                        key.currentState.save();
+                        print('username:$username  password:$psd');
+                      }),
+                ),
+                SizedBox(
+                  width: 50,
+                ),
+                Container(
+                  width: double.infinity,
+                  child: RaisedButton(
+                    color: Colors.lightBlueAccent,
+                    child: Text("登录"),
+                    onPressed: () {
+                      print('进行登录');
+                    },
+                  ),
+                )
+              ],
+            )),
+      );
 }
